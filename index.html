@@ -12,11 +12,8 @@
         <style>
 
             * {
-                box-sizing: border-box;
-            }
-
-            body {
                 margin: auto;
+                box-sizing: border-box;
             }
 
             #header {
@@ -65,11 +62,54 @@
             }
             #board {
                 height: 70vh;
-                background-color: yellowgreen;
+                background-color: white;
+                width: 80%;
+                display: flex;
             }
+
+
+            /* 전체 paging 설정 */
             #paging {
                 height: 5vh;
-                background-color: pink;
+                background-color: white;
+            }
+
+            .pagination {
+                display: flex;
+                width: 30%;
+            }
+
+            .pagination button {
+                background-color: #04AA6D;
+                border: none;
+                color: white;
+                padding: 10px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 16px;
+                margin: 4px 2px;
+                border-radius: 50%;
+            }
+
+            /* 페이징 a 태그 */
+            .pagination a {
+                float: left;
+                color: black;
+                padding: 10px;
+                text-decoration: none;
+                transition: background-color 0.3s;
+            }
+
+            /* 링크 활성화될 때 속성 */
+            .pagination a.active {
+                background-color: dodgerblue;
+                color: white;
+            }
+
+            /* 마우스 위로 올릴 때 속성 */
+            .pagination a:hover:not(.active) {
+                background-color: #ddd;
             }
 
             /* 전체 search div 설정*/
@@ -80,7 +120,7 @@
                 background-color: white;
             }
 
-            select.search{
+            select.search {
                 margin-right: 5px;
                 padding: 3px;
                 float: left;
@@ -140,11 +180,45 @@
         </div>
         <div id="board">
             <!--게시판, 정렬 버튼-->
-            게시판 및 정렬버튼
+            <div class="table">
+                <div class="tableheading">
+                    <div class="tablerow">
+                        <div class="tableheader">글번호</div>
+                        <div class="tableheader">제목</div>
+                        <div class="tableheader">작성일</div>
+                        <div class="tableheader">평점</div>
+                    </div>
+                </div>
+                <div class="tablebody">
+                    <div class="tablerow">
+                        <div class="tablecell">1</div>
+                        <div class="tablecell">title1</div>
+                        <div class="tablecell">2022/8/30</div>
+                        <div class="tablecell">5</div>
+                    </div>
+                </div>
+
+            </div>
+            
         </div>
         <div id="paging">
             <!--목록 버튼 & 페이징 & 글쓰기 버튼-->
-            목록 버튼 & 페이징 & 글쓰기 버튼
+            <div class="pagination">
+                <button class="button button5">목록</button>
+                <a href="#">&laquo;</a>
+                <a href="#">1</a>
+                <a class="active" href="#">2</a>
+                <a href="#">3</a>
+                <a href="#">4</a>
+                <a href="#">5</a>
+                <a href="#">6</a>
+                <a href="#">7</a>
+                <a href="#">8</a>
+                <a href="#">9</a>
+                <a href="#">10</a>
+                <a href="#">&raquo;</a>
+                <button class="button button5">글쓰기</button>
+            </div>
         </div>
         <div id="search" style="width: 500px;">
             <!--검색-->
