@@ -4,12 +4,17 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- w3스쿨 이미지 링크 -->
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <title>Document</title>
         <style>
             body {
                 margin: 0;
             }
 
+            /*그리드 설정*/
             .grid-container {
                 padding: 10px;
                 display: grid;
@@ -19,10 +24,11 @@
 
             .grid-item {
                 padding: 5px;
-                border: 3px solid black;
+               border: 3px solid black;
                 color: green;
             }
 
+            /*헤더 설정*/
             .header {
                 color: green;
                 display: flex;
@@ -55,6 +61,146 @@
                 background-color: rgb(80, 243, 16);
                 color: white;
             }
+
+            /*검색 설정*/
+            .search {
+                display: flex;
+                justify-content: center;
+            }
+            form.search input[type=text] {
+                width: 300px;
+                font-size: 17px;
+                border: 1px solid grey;
+                background: #f1f1f1;
+            }
+
+            form.search button {
+                width: 50px;
+                background: #2196F3;
+                color: white;
+                font-size: 17px;
+                border: 1px solid grey;
+                border-left: none;
+                /* 이중 테두리 방지 */
+                cursor: pointer;
+            }
+
+            .search select {
+                margin-right: 7px;
+            }
+
+            form.search button:hover {
+                background: #03355e;
+            }
+
+            form.search::after {
+                content: "";
+            }
+
+            /*페이징 설정*/
+            .paging {
+                display: flex;
+                justify-content: center;
+            }
+
+            .paging button {
+                background-color: #04AA6D;
+                border: none;
+                color: white;
+                text-align: center;
+                text-decoration: none;
+                font-size: 16px;
+                border-radius: 50%;
+            }
+
+            .paging a {
+                color: black;
+                padding: 10px;
+                text-decoration: none;
+                transition: background-color 0.3s;
+            }
+
+            .paging a.active {
+                background-color: dodgerblue;
+                color: white;
+            }
+
+            .paging a:hover:not(.active) {
+                background-color: rgb(40, 245, 33);
+            }
+
+            /*css table 설정(div를 이용해 table 작성)*/
+
+            .table {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                height: 100%;
+
+            }
+
+            .sort{
+                align-self: flex-start;
+                margin-left: 10%;
+                padding-bottom: 0.3%;
+            }
+
+            div.blueTable {
+                border: 1px solid #020500;
+                background-color: #EEEEEE;
+                width: 80%;
+                text-align: left;
+                border-collapse: collapse;
+            }
+            .divTable.blueTable .divTableCell,
+            .divTable.blueTable .divTableHead {
+                border: 1px solid #AAAAAA;
+                padding: 3px 2px;
+            }
+            .divTable.blueTable .divTableBody .divTableCell {
+                font-size: 16px;
+            }
+            .divTable.blueTable .divTableHeading {
+                background: #2FFF0B;
+                background: -moz-linear-gradient(top, #63ff48 0%, #43ff23 66%, #2FFF0B 100%);
+                background: -webkit-linear-gradient(top, #63ff48 0%, #43ff23 66%, #2FFF0B 100%);
+                background: linear-gradient(to bottom, #63ff48 0%, #43ff23 66%, #2FFF0B 100%);
+                border-bottom: 2px solid #444444;
+            }
+            .divTable.blueTable .divTableHeading .divTableHead {
+                font-size: 20px;
+                font-weight: bold;
+                color: #000000;
+                border-left: 2px solid #D0E4F5;
+            }
+            .divTable.blueTable .divTableHeading .divTableHead:first-child {
+                border-left: none;
+            }
+
+            .divTable {
+                display: table;
+            }
+            .divTableRow {
+                display: table-row;
+            }
+            .divTableHeading {
+                display: table-header-group;
+            }
+            .divTableCell,
+            .divTableHead {
+                display: table-cell;
+            }
+            .divTableHeading {
+                display: table-header-group;
+            }
+            .divTableBody {
+                display: table-row-group;
+            }
+
+            .divTableHead.bno{
+                width: 10%;
+            }
         </style>
     </head>
     <body>
@@ -76,11 +222,132 @@
             <!-- API -->
             <div class="grid-item">HFApi</div>
             <!--게시판, 정렬 버튼-->
-            <div class="grid-item">HFTable</div>
-            <!--목록 버튼 & 페이징 & 글쓰기 버튼-->
-            <div class="grid-item">HFPaging</div>
-            <!--검색-->
-            <div class="grid-item">HFSearch</div>
-        </div>
-    </body>
-</html>
+            <div class="grid-item">
+                <div class="table">
+                    <div class="sort">
+                        <button class="reply">댓글순</button>
+                        <button class="grade">평점순</button>
+                    </div>
+                    <div class="divTable blueTable">
+                        <div class="divTableHeading">
+                            <div class="divTableRow">
+                                <div class="divTableHead bno">번호</div>
+                                <div class="divTableHead title">제목</div>
+                                <div class="divTableHead writer">글쓴이</div>
+                                <div class="divTableHead day">날짜</div>
+                                <div class="divTableHead grade">평점</div>
+                            </div>
+                        </div>
+                        <div class="divTableBody">
+                            <div class="divTableRow">
+                                <div class="divTableCell">cell1_1</div>
+                                <div class="divTableCell">cell2_1</div>
+                                <div class="divTableCell">cell3_1</div>
+                                <div class="divTableCell">cell4_1</div>
+                                <div class="divTableCell">cell5_1</div>
+                            </div>
+                            <div class="divTableRow">
+                                <div class="divTableCell">cell1_2</div>
+                                <div class="divTableCell">cell2_2</div>
+                                <div class="divTableCell">cell3_2</div>
+                                <div class="divTableCell">cell4_2</div>
+                                <div class="divTableCell">cell5_2</div>
+                            </div>
+                            <div class="divTableRow">
+                                <div class="divTableCell">cell1_3</div>
+                                <div class="divTableCell">cell2_3</div>
+                                <div class="divTableCell">cell3_3</div>
+                                <div class="divTableCell">cell4_3</div>
+                                <div class="divTableCell">cell5_3</div>
+                            </div>
+                            <div class="divTableRow">
+                                <div class="divTableCell">cell1_4</div>
+                                <div class="divTableCell">cell2_4</div>
+                                <div class="divTableCell">cell3_4</div>
+                                <div class="divTableCell">cell4_4</div>
+                                <div class="divTableCell">cell5_4</div>
+                            </div>
+                            <div class="divTableRow">
+                                <div class="divTableCell">cell1_5</div>
+                                <div class="divTableCell">cell2_5</div>
+                                <div class="divTableCell">cell3_5</div>
+                                <div class="divTableCell">cell4_5</div>
+                                <div class="divTableCell">cell5_5</div>
+                            </div>
+                            <div class="divTableRow">
+                                <div class="divTableCell">cell1_6</div>
+                                <div class="divTableCell">cell2_6</div>
+                                <div class="divTableCell">cell3_6</div>
+                                <div class="divTableCell">cell4_6</div>
+                                <div class="divTableCell">cell5_6</div>
+                            </div>
+                            <div class="divTableRow">
+                                <div class="divTableCell">cell1_7</div>
+                                <div class="divTableCell">cell2_7</div>
+                                <div class="divTableCell">cell3_7</div>
+                                <div class="divTableCell">cell4_7</div>
+                                <div class="divTableCell">cell5_7</div>
+                            </div>
+                            <div class="divTableRow">
+                                <div class="divTableCell">cell1_8</div>
+                                <div class="divTableCell">cell2_8</div>
+                                <div class="divTableCell">cell3_8</div>
+                                <div class="divTableCell">cell4_8</div>
+                                <div class="divTableCell">cell5_8</div>
+                            </div>
+                            <div class="divTableRow">
+                                <div class="divTableCell">cell1_9</div>
+                                <div class="divTableCell">cell2_9</div>
+                                <div class="divTableCell">cell3_9</div>
+                                <div class="divTableCell">cell4_9</div>
+                                <div class="divTableCell">cell5_9</div>
+                            </div>
+                            <div class="divTableRow">
+                                <div class="divTableCell">cell1_10</div>
+                                <div class="divTableCell">cell2_10</div>
+                                <div class="divTableCell">cell3_10</div>
+                                <div class="divTableCell">cell4_10</div>
+                                <div class="divTableCell">cell5_10</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--목록 버튼 & 페이징 & 글쓰기 버튼-->
+                <div class="grid-item">
+                    <div class="paging">
+                        <button class="listBtn">목록</button>
+                        <a href="#">&laquo;</a>
+                        <a href="#">1</a>
+                        <a class="active" href="#">2</a>
+                        <a href="#">3</a>
+                        <a href="#">4</a>
+                        <a href="#">5</a>
+                        <a href="#">6</a>
+                        <a href="#">7</a>
+                        <a href="#">8</a>
+                        <a href="#">9</a>
+                        <a href="#">10</a>
+                        <a href="#">&raquo;</a>
+                        <button class="writeBtn" type="button">글쓰기</button>
+                    </div>
+                </div>
+                <!--검색-->
+                <div class="grid-item">
+                    <div class="searchD">
+                        <form class="search" action="#">
+                            <select class="search" style="height:42px">
+                                <option value="title">제목</option>
+                                <option value="content">내용</option>
+                                <option value="title&content">제목+내용</option>
+                                <option value="writer">작성자</option>
+                            </select>
+                            <input type="text" placeholder="검색할 내용을 입력해주세요" name="search">
+                            <button type="submit">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </body>
+    </html>
