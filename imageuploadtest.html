@@ -46,7 +46,7 @@
                 margin-bottom: 0;
             }
             .contents .upload-box .drag-file .preview {
-                display: none;
+                display: none; /* 파일을 읽어오면 이벤트를 통해 block이 된다 */
                 position: absolute;
                 left: 0;
                 height: 0;
@@ -104,17 +104,20 @@
                         class="file"
                         id="chooseFile"
                         type="file"
-                        onchange="dropFile.handleFiles(this.files)" 
+                        onchange="dropFile.handleFiles(this.files)"
                         accept="image/png, image/jpeg, image/gif">
-                        <!--files = input file의 속성 파일을 업로드하면 파일들의 정보가 fileList 객체 형태로 files에 들어간다-->
+                        <!--files = input file의 속성 파일을 업로드하면 파일들의 정보가 fileList 객체 형태로 files에 들어간다
+                            onchange = 해당 객체에 변경이 생기면 실행될 함수를 지정한다
+                            accept = 허용되는 파일들 세세한 파일 허용은 서버단에서 처리해야만 한다
+                        -->
                 </div>
             </div>
         </div>
     </body>
     <script>
         function DropFile(dropAreaId, fileListId) {
-            let dropArea = document.getElementById(dropAreaId);
-            let fileList = document.getElementById(fileListId);
+            let dropArea = document.getElementById(dropAreaId); // #drop-file을 저장
+            let fileList = document.getElementById(fileListId); // 처음에는 files가 없기에 null
 
             function preventDefaults(e) {
                 e.preventDefault();
@@ -137,46 +140,40 @@
 
             function handleDrop(e) {
                 unhighlight(e);
-                let dt = e.dataTransfer;
+                let dt = e.dataTransfer; // DataTransfer  - 드래그 앤 드롭 동작에 관한 정보를 가지고 있다
                 let files = dt.files;
 
                 handleFiles(files);
-
-                const fileList = document.getElementById(fileListId);
-                if (fileList) {
-                    fileList.scrollTo({top: fileList.scrollHeight});
-                }
             }
 
             function handleFiles(files) {
                 files = [...files];
-                // files.forEach(uploadFile);
+                // files.forEach(uploadFile); forEach = 배열을 순환하며 해당 함수를 실행한다
                 files.forEach(previewFile);
             }
 
             function previewFile(file) {
-                console.log(file);
                 renderFile(file);
             }
 
             function renderFile(file) {
                 let reader = new FileReader();
-                reader.readAsDataURL(file);
-                reader.onloadend = function () {
+                reader.readAsDataURL(file); // 이미지 파일(바이너리 파일)을 base64로 반환
+                reader.onloadend = function () { // 읽기에 성공하였을 때
                     let img = dropArea.getElementsByClassName("preview")[0];
-                    img.src = reader.result;
+                    img.src = reader.result; // result - 파일 내용을 반환
                     img.style.display = "block";
                 };
             }
 
-            dropArea.addEventListener("dragenter", highlight, false);
-            dropArea.addEventListener("dragover", highlight, false);
-            dropArea.addEventListener("dragleave", unhighlight, false);
-            dropArea.addEventListener("drop", handleDrop, false);
+            dropArea.addEventListener("dragenter", highlight, false); //드래그된 엘리먼트나 텍스트 선택이 유효한 드랍 대상에 들어왔을 때.
+            dropArea.addEventListener("dragover", highlight, false); //엘리먼트나 텍스트 선택이 유효한 드랍 대상위로 드래그되었을 때
+            dropArea.addEventListener("dragleave", unhighlight, false); // 드래그된 엘리먼트나 텍스트 선택이 유효한 드랍 대상에서 나갈 때.
+            dropArea.addEventListener("drop", handleDrop, false); // 엘리먼트가 유효한 드랍 대상에 드랍되었을 때.
 
             return {handleFiles};
         }
-
         const dropFile = new DropFile("drop-file", "files");
+        /*상수로 dropFile 객체를 생성해둔다*/
     </script>
 </html>
