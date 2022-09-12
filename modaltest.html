@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <style>
+            /* 기본 콘텐츠 */
+            body,
+            html {
+                padding: 0;
+                margin: 0;
+            }
+            #root {
+                background-color: #fff;
+                width: 100%;
+                min-height: 100vh;
+            }
+
+            /* 모달 */
+            .modal {
+                position: fixed;
+                top: 0;
+                left: 0;
+                z-index: -1000;
+                width: 100%;
+                height: 100vh;
+                background-color: rgba(0, 0, 0, 0.5);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            .modal .content {
+                height: 80vh;
+                min-width: 50%;
+                padding: 20px;
+                box-sizing: border-box;
+                background-color: #fff;
+                box-shadow: 0 1px 7px rgba(0, 0, 0, 0.5);
+                transform: translateY(20%);
+                opacity: 0;
+            }
+            .modal.on {
+                display: flex;
+                z-index: 1000;
+            }
+            .modal.on .content {
+                transform: translateY(0);
+                opacity: 1;
+                transition: all 0.3s;
+            }
+            #test{
+                z-index: 1000;
+                width: 100%;
+                height: 1000px;
+                background-color: aqua;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="test">
+            흠
+        
+        <div id="root">
+            <button onclick="modal.show()">show</button>
+        </div>
+        <section id="modal" class="modal on">
+            <div class="content"></div>
+        </section>
+        </div>
+    </body>
+    <script>
+        function Modal(target) {
+            const modal = document.querySelector(target);
+
+            modal.addEventListener("click", function () {
+                modal.className = "modal";
+            });
+            modal
+                .children[0]
+                .addEventListener("click", function (e) {
+                    e.stopPropagation();
+                });
+
+            return {
+                show: function () {
+                    modal.className = "modal on";
+                },
+                hide: function () {
+                    modal.className = "modal";
+                }
+            };
+        }
+
+        const modal = new Modal("#modal");
+    </script>
+</html>
