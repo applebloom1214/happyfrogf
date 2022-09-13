@@ -10,15 +10,77 @@
                 box-sizing: border-box;
             }
 
+            body {
+                margin: 0;
+            }
+
+            /*그리드 설정*/
+            .grid-container {
+                padding: 0.63em;
+                display: grid;
+                gap: 0.31em;
+                grid-template-rows: 4.38em 50em;
+            }
+
+            .grid-item {
+                padding: 0.31em;
+                border: 0.19em solid black;
+                color: green;
+            }
+
+            /*헤더 설정*/
+            .header {
+                color: green;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+            .logo span,
+            a {
+                color: green;
+                float: left;
+                text-align: center;
+                padding: 0.75em;
+                text-decoration: none;
+                font-size: 1.13em;
+                line-height: 1.56em;
+                border-radius: 0.25em;
+            }
+
+            .header a.active {
+                background-color: rgb(80, 243, 16);
+                color: white;
+            }
+
+            .header a:hover {
+                background-color: #ddd;
+                color: black;
+            }
+
+            .header a.active {
+                background-color: rgb(80, 243, 16);
+                color: white;
+            }
+
+            img {
+                width: 3.44em;
+                height: 3.44em;
+            }
+
             /* Full-width input fields */
             input[type=password],
             input[type=text] {
                 width: 100%;
-                padding: 15px;
-                margin: 5px 0 22px;
+                padding: 0.94em;
+                margin: 0.31em 0 1.38em;
                 display: inline-block;
                 border: none;
                 background: #f1f1f1;
+            }
+
+            .grid-item.signin {
+                color: black;
+                margin-top: 1em;
             }
 
             input[type=password]:focus,
@@ -28,16 +90,16 @@
             }
 
             hr {
-                border: 1px solid #f1f1f1;
-                margin-bottom: 25px;
+                border: 0.06em solid #f1f1f1;
+                margin-bottom: 1.56em;
             }
 
             /* Set a style for all buttons */
             button {
                 background-color: #04AA6D;
                 color: white;
-                padding: 14px 20px;
-                margin: 8px 0;
+                padding: 0.88em 1.25em;
+                margin: 0.50em 0;
                 border: none;
                 cursor: pointer;
                 width: 100%;
@@ -50,20 +112,20 @@
 
             /* Extra styles for the cancel button */
             .cancelbtn {
-                padding: 14px 20px;
+                padding: 0.88em 1.25em;
                 background-color: #f44336;
             }
 
             /* Float cancel and signup buttons and add an equal width */
             .cancelbtn,
             .signupbtn {
-                float: left;
-                width: 50%;
+                float: right;
+                width: 10%;
             }
 
             /* Add padding to container elements */
             .container {
-                padding: 16px;
+                padding: 1em;
             }
 
             /* Clear floats */
@@ -73,48 +135,67 @@
                 display: table;
             }
 
-            /* Change styles for cancel button and signup button on extra small screens */
-            @media screen and (max-width: 300px) {
+            @media screen and (max-width: 32em) {
                 .cancelbtn,
                 .signupbtn {
+                    width: 100%;
+                }
+
+                .grid-item.signin{
                     width: 100%;
                 }
             }
         </style>
     </head>
     <body>
-        <div class="container">
-            <h1>회원 가입</h1>
-            <p>회원 가입을 위해 빈칸을 채워주세요</p>
-            <hr>
+        <div class="grid-container">
+            <div class="grid-item">
+                <div class="header">
+                    <div class="logo">
+                        <img src="images/frog.png">
+                        <span>HappyFrog 0.0</span>
+                    </div>
+                    <div class="header-right">
+                        <a class="active" href="#home">Home</a>
+                        <a href="#signin">SignUp</a>
+                        <a href="#Login">Login</a>
+                    </div>
+                </div>
+            </div>
+            <div class="grid-item signin">
+                <div class="container">
+                    <h1>회원 가입</h1>
+                    <p>회원 가입을 위해 빈칸을 채워주세요</p>
+                    <hr>
 
-            <label for="email">
-                <b>이메일</b>
-            </label>
-            <input type="text" placeholder="이메일을 입력해주세요" id="email" required="required">
+                    <label for="email">
+                        <b>이메일</b>
+                    </label>
+                    <input type="text" placeholder="이메일을 입력해주세요" id="email" required="required">
 
-            <label for="psw">
-                <b>비밀번호</b>
-            </label>
-            <input
-                type="password"
-                placeholder="비밀번호를 입력해주세요"
-                name="psw"
-                required="required">
+                    <label for="psw">
+                        <b>비밀번호</b>
+                    </label>
+                    <input
+                        type="password"
+                        placeholder="비밀번호를 입력해주세요"
+                        name="psw"
+                        required="required">
 
-            <label for="psw-repeat">
-                <b>비밀번호 확인</b>
-            </label>
-            <input
-                type="password"
-                placeholder="비밀번호를 다시 한번 입력해주세요"
-                name="psw-repeat"
-                required="required">
+                    <label for="psw-repeat">
+                        <b>비밀번호 확인</b>
+                    </label>
+                    <input
+                        type="password"
+                        placeholder="비밀번호를 다시 한번 입력해주세요"
+                        name="psw-repeat"
+                        required="required">
 
-
-            <div class="clearfix">
-                <button type="button" class="cancelbtn">취소</button>
-                <button type="submit" class="signupbtn">회원 가입</button>
+                    <div class="clearfix">
+                        <button type="submit" class="signupbtn">회원 가입</button>
+                        <button type="button" class="cancelbtn">취소</button>
+                    </div>
+                </div>
             </div>
         </div>
     </body>
