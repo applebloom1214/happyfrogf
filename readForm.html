@@ -163,7 +163,7 @@
             font-weight: bold;
         }
 
-        .ratingc{
+        #ratingc{
             display: none;
         }
     </style>
@@ -202,45 +202,95 @@
                             <!--legend - fieldset의 caption을 설정한다-->
                             <legend>평점 매기기</legend>
                             <!--for 속성 - 연결된 id와 연동된다-->
-                            <input type="radio" name="rating" value="5" id="rate1">
+                            <input type="radio" name="rating" value="5" id="rate1" onclick="checkRadio(this.value);">
                             <label for="rate1">⭐</label>
-                            <input type="radio" name="rating" value="4" id="rate2">
+                            <input type="radio" name="rating" value="4" id="rate2" onclick="checkRadio(this.value);">
                             <label for="rate2">⭐</label>
-                            <input type="radio" name="rating" value="3" id="rate3">
+                            <input type="radio" name="rating" value="3" id="rate3" onclick="checkRadio(this.value);">
                             <label for="rate3">⭐</label>
-                            <input type="radio" name="rating" value="2" id="rate4">
+                            <input type="radio" name="rating" value="2" id="rate4" onclick="checkRadio(this.value);">
                             <label for="rate4">⭐</label>
-                            <input type="radio" name="rating" value="1" id="rate5">
+                            <input type="radio" name="rating" value="1" id="rate5" onclick="checkRadio(this.value);">
                             <label for="rate5">⭐</label>
                         </fieldset>
-                        <button class="ratingc">댓글 등록</button>
+                        <div id="ratingc">
+                            <input type="hidden" id="star">
+                            <input type="text" id="comment">
+                            <button class="ratingRegister" type="button" onclick="registerCmt()">평점 등록</button>
+                        </div>
+                        
                     </form>
                 </div>
                 <div class="buttons">
                     <button type="button" class="delete">삭제</button>
                     <button type="button" class="modify">수정</button>
-                    <button type="button" class="reply">댓글</button>
                     <button type="button" class="list">목록</button>
                 </div>
-                <div class="reply">
+                
+                <div id="reply" class="reply">
                     <hr>
-                    <dicv class="comment">
+                    <div class="comment">
                         ⭐⭐⭐ 😀 나그네 하하하 재밌군요.
-                    </dicv>
-                    <dicv class="comment">
+                    </div>
+                    <div class="comment">
                         ⭐⭐⭐ 😀 나그네 하하하 재밌군요.
-                    </dicv>
-                    <dicv class="comment">
+                    </div>
+                    <div class="comment">
                         ⭐⭐⭐ 😀 나그네 하하하 재밌군요.
-                    </dicv>
-                    <dicv class="comment">
+                    </div>
+                    <div class="comment">
                         ⭐⭐⭐ 😀 나그네 하하하 재밌군요.
-                    </dicv>
-                    <dicv class="comment">
+                    </div>
+                    <div class="comment">
                         ⭐⭐⭐ 😀 나그네 하하하 재밌군요.
-                    </dicv>
+                    </div>
                 </div>
             </div>
         </div>
     </body>
+    <script>
+        function checkRadio(star){
+            document.getElementById("ratingc").style.display = "inline";
+            document.getElementById("star").value = star;
+            
+        }
+
+        function registerCmt(){
+            let comment = document.getElementById("comment").value;
+            let star = document.getElementById("star").value;
+            // div 생성
+            const newReply = document.createElement("div");
+            // 리플 붙일 div
+            const replyDiv = document.getElementById("reply");
+
+            let star2;
+
+            if(star == 1){
+                star2 = "⭐ ";
+            }else if(star ==2){
+                star2 = "⭐⭐ ";
+            }else if(star ==3){
+                star2 = "⭐⭐⭐ ";
+            }else if(star ==4){
+                star2 = "⭐⭐⭐⭐ ";
+            }else{
+                star2 = "⭐⭐⭐⭐⭐ ";
+            }
+
+            star2 += comment;
+
+            //div에 텍스트 붙이기
+            newReply.append(star2);
+            newReply.classList.add("comment");
+
+            replyDiv.append(newReply);
+
+            document.getElementById("ratingc").style.display = "none";
+            
+
+        }
+
+
+
+    </script>
 </html>
