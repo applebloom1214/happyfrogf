@@ -135,10 +135,10 @@
                 display: table;
             }
 
-            @media screen and (max-width: 32em) {
+            @media screen and (max-width: 47.94em) {
                 .cancelbtn,
                 .signupbtn {
-                    width: 100%;
+                    width: 7em;
                 }
 
                 .grid-item.signin{
@@ -169,9 +169,9 @@
                     <hr>
 
                     <label for="email">
-                        <b>이메일</b>
+                        <b>아이디</b>
                     </label>
-                    <input type="text" placeholder="이메일을 입력해주세요" id="email" required="required">
+                    <input type="text" placeholder="아이디를 입력해주세요" id="email" required="required">
 
                     <label for="psw">
                         <b>비밀번호</b>
@@ -190,6 +190,16 @@
                         placeholder="비밀번호를 다시 한번 입력해주세요"
                         name="psw-repeat"
                         required="required">
+
+                        <label for="nick">
+                            <b>닉네임</b>
+                        </label>
+                        <input type="text" placeholder="닉네임을 입력해주세요" id="nick" required="required">
+
+                        <label for="introduce">
+                            <b>한줄소개</b>
+                        </label>
+                        <input type="text" placeholder="간단하게 소개를 해주세요" id="introduce" required="required"> 
 
                     <div class="clearfix">
                         <button type="submit" class="signupbtn">회원 가입</button>

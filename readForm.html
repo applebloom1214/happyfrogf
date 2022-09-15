@@ -72,6 +72,11 @@
             color: white;
         }
 
+        img {
+            width: 3.44em;
+            height: 3.44em;
+        }
+
         /* picture */
 
         .picture {
@@ -133,37 +138,60 @@
 
         /* 삭제,수정,댓글, 목록 버튼(삭제, 수정은 글쓴이에게만 보인다, 댓글은 글쓴이 외에만 표기)*/
 
-        .buttons{
+        .buttons {
             padding: 1em;
             width: 40%;
             display: flex;
             justify-content: end;
         }
 
-        .buttons button{
+        .buttons button {
             margin: 0.1em;
             text-align: center;
+            box-shadow: inset 0 1px 0 0 #caefab;
+                background: linear-gradient(to bottom, #2FFF0B 5%, #2FFF0B 100%);
+                background-color: #2FFF0B;
+                border-radius: 6px;
+                border: 1px solid #2FFF0B;
+                display: inline-block;
+                cursor: pointer;
+                color: #306108;
+                font-family: Arial;
+                font-size: 13px;
+                font-weight: bold;
+                padding: 6px 24px;
+                text-decoration: none;
+                text-shadow: 0 1px 0 #aade7c;
         }
+
+            .buttons button:hover {
+                background: linear-gradient(to bottom, #a5cc52 5%, #b8e356 100%);
+                background-color: #a5cc52;
+            }
+            .buttons button:active {
+                position: relative;
+                top: 1px;
+            }
 
         /* 리플 */
 
-        .reply{
+        .reply {
             display: flex;
             flex-direction: column;
             text-align: center;
         }
 
-        .reply hr{
+        .reply hr {
             width: 50em;
         }
 
-        .comment{
+        .comment {
             margin-top: 0.31em;
             font-size: 1em;
             font-weight: bold;
         }
 
-        #ratingc{
+        #ratingc {
             display: none;
         }
     </style>
@@ -173,7 +201,7 @@
             <div class="grid-item">
                 <div class="header">
                     <div class="logo">
-                        <img src="images/frog.png" width="55px" height="55px">
+                        <img src="images/frog.png">
                         <span>HappyFrog 0.0</span>
                     </div>
                     <div class="header-right">
@@ -202,15 +230,40 @@
                             <!--legend - fieldset의 caption을 설정한다-->
                             <legend>평점 매기기</legend>
                             <!--for 속성 - 연결된 id와 연동된다-->
-                            <input type="radio" name="rating" value="5" id="rate1" onclick="checkRadio(this.value);">
+                            <input
+                                type="radio"
+                                name="rating"
+                                value="5"
+                                id="rate1"
+                                onclick="checkRadio(this.value);">
                             <label for="rate1">⭐</label>
-                            <input type="radio" name="rating" value="4" id="rate2" onclick="checkRadio(this.value);">
+                            <input
+                                type="radio"
+                                name="rating"
+                                value="4"
+                                id="rate2"
+                                onclick="checkRadio(this.value);">
                             <label for="rate2">⭐</label>
-                            <input type="radio" name="rating" value="3" id="rate3" onclick="checkRadio(this.value);">
+                            <input
+                                type="radio"
+                                name="rating"
+                                value="3"
+                                id="rate3"
+                                onclick="checkRadio(this.value);">
                             <label for="rate3">⭐</label>
-                            <input type="radio" name="rating" value="2" id="rate4" onclick="checkRadio(this.value);">
+                            <input
+                                type="radio"
+                                name="rating"
+                                value="2"
+                                id="rate4"
+                                onclick="checkRadio(this.value);">
                             <label for="rate4">⭐</label>
-                            <input type="radio" name="rating" value="1" id="rate5" onclick="checkRadio(this.value);">
+                            <input
+                                type="radio"
+                                name="rating"
+                                value="1"
+                                id="rate5"
+                                onclick="checkRadio(this.value);">
                             <label for="rate5">⭐</label>
                         </fieldset>
                         <div id="ratingc">
@@ -218,7 +271,7 @@
                             <input type="text" id="comment">
                             <button class="ratingRegister" type="button" onclick="registerCmt()">평점 등록</button>
                         </div>
-                        
+
                     </form>
                 </div>
                 <div class="buttons">
@@ -226,7 +279,7 @@
                     <button type="button" class="modify">수정</button>
                     <button type="button" class="list">목록</button>
                 </div>
-                
+
                 <div id="reply" class="reply">
                     <hr>
                     <div class="comment">
@@ -249,15 +302,24 @@
         </div>
     </body>
     <script>
-        function checkRadio(star){
-            document.getElementById("ratingc").style.display = "inline";
-            document.getElementById("star").value = star;
-            
+        function checkRadio(star) {
+            document
+                .getElementById("ratingc")
+                .style
+                .display = "inline";
+            document
+                .getElementById("star")
+                .value = star;
+
         }
 
-        function registerCmt(){
-            let comment = document.getElementById("comment").value;
-            let star = document.getElementById("star").value;
+        function registerCmt() {
+            let comment = document
+                .getElementById("comment")
+                .value;
+            let star = document
+                .getElementById("star")
+                .value;
             // div 생성
             const newReply = document.createElement("div");
             // 리플 붙일 div
@@ -265,15 +327,15 @@
 
             let star2;
 
-            if(star == 1){
+            if (star == 1) {
                 star2 = "⭐ ";
-            }else if(star ==2){
+            } else if (star == 2) {
                 star2 = "⭐⭐ ";
-            }else if(star ==3){
+            } else if (star == 3) {
                 star2 = "⭐⭐⭐ ";
-            }else if(star ==4){
+            } else if (star == 4) {
                 star2 = "⭐⭐⭐⭐ ";
-            }else{
+            } else {
                 star2 = "⭐⭐⭐⭐⭐ ";
             }
 
@@ -281,16 +343,17 @@
 
             //div에 텍스트 붙이기
             newReply.append(star2);
-            newReply.classList.add("comment");
+            newReply
+                .classList
+                .add("comment");
 
             replyDiv.append(newReply);
 
-            document.getElementById("ratingc").style.display = "none";
-            
+            document
+                .getElementById("ratingc")
+                .style
+                .display = "none";
 
         }
-
-
-
     </script>
 </html>

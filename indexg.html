@@ -62,7 +62,7 @@
                 color: white;
             }
 
-            img{
+            img {
                 width: 3.44em;
                 height: 3.44em;
             }
@@ -81,7 +81,7 @@
 
             form.search button {
                 width: 3.13em;
-                background: #2196F3;
+                background: #2FFF0B;
                 color: white;
                 font-size: 1.06em;
                 border: 0.06em solid grey;
@@ -95,7 +95,7 @@
             }
 
             form.search button:hover {
-                background: #03355e;
+                background: #075f04;
             }
 
             form.search::after {
@@ -116,7 +116,7 @@
                 cursor: pointer;
                 outline: none;
                 color: #fff;
-                background-color: #04AA6D;
+                background-color: #2FFF0B;
                 border: none;
                 border-radius: 0.94em;
                 box-shadow: 0 0.19em #999;
@@ -140,7 +140,7 @@
             }
 
             .paging a.active {
-                background-color: dodgerblue;
+                background-color: #2FFF0B;
                 color: white;
             }
 
@@ -217,19 +217,43 @@
                 display: table-row-group;
             }
 
-            .divTableHead.bno{
+            .divTableHead.bno {
                 width: 10%;
             }
 
-            .divTableHead.grade{
+            .divTableHead.grade {
                 width: 10%;
             }
 
-            
-            .divTableHead.day{
+            .divTableHead.day {
                 width: 20%;
             }
 
+            .sort button {
+                box-shadow: inset 0 1px 0 0 #caefab;
+                background: linear-gradient(to bottom, #2FFF0B 5%, #2FFF0B 100%);
+                background-color: #2FFF0B;
+                border-radius: 6px;
+                border: 1px solid #2FFF0B;
+                display: inline-block;
+                cursor: pointer;
+                color: #306108;
+                font-family: Arial;
+                font-size: 13px;
+                font-weight: bold;
+                padding: 6px 24px;
+                text-decoration: none;
+                text-shadow: 0 1px 0 #aade7c;
+            }
+
+            .sort button:hover {
+                background: linear-gradient(to bottom, #a5cc52 5%, #b8e356 100%);
+                background-color: #a5cc52;
+            }
+            .sort button:active {
+                position: relative;
+                top: 1px;
+            }
         </style>
     </head>
     <body>
@@ -256,6 +280,7 @@
                     <div class="sort">
                         <button class="reply">댓글순</button>
                         <button class="grade">평점순</button>
+                        <button class="random">랜덤</button>
                     </div>
                     <div class="divTable blueTable">
                         <div class="divTableHeading">
