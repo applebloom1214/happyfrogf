@@ -13,6 +13,7 @@
     <style>
         body {
             margin: 0;
+            background-image: url("images/leaves.webp");
         }
 
         /*그리드 설정*/
@@ -25,7 +26,7 @@
 
         .grid-item {
             padding: 0.31em;
-            border: 0.19em solid black;
+            /* border: 0.19em solid black; */
             color: green;
         }
 
@@ -35,7 +36,12 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            background-color: aqua;
+            /* background-color: aqua; */
+        }
+
+        .grid-item.fixed {
+            width: 100%;
+            position: fixed;
         }
 
         /*헤더 설정*/
@@ -44,7 +50,13 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            background-color: whitesmoke;
         }
+
+        .header-right {
+            margin-right: 1em;
+        }
+
         .logo span,
         a {
             color: green;
@@ -80,6 +92,7 @@
         /* picture */
 
         .picture {
+            margin-top: 5em;
             width: 50em;
             height: 25em;
             background-color: blue;
@@ -145,33 +158,39 @@
             justify-content: end;
         }
 
-        .buttons button {
+        .buttons button,
+        .moreBtn {
             margin: 0.1em;
             text-align: center;
             box-shadow: inset 0 1px 0 0 #caefab;
-                background: linear-gradient(to bottom, #2FFF0B 5%, #2FFF0B 100%);
-                background-color: #2FFF0B;
-                border-radius: 6px;
-                border: 1px solid #2FFF0B;
-                display: inline-block;
-                cursor: pointer;
-                color: #306108;
-                font-family: Arial;
-                font-size: 13px;
-                font-weight: bold;
-                padding: 6px 24px;
-                text-decoration: none;
-                text-shadow: 0 1px 0 #aade7c;
+            background: linear-gradient(to bottom, #2FFF0B 5%, #2FFF0B 100%);
+            background-color: #2FFF0B;
+            border-radius: 6px;
+            border: 1px solid #2FFF0B;
+            display: inline-block;
+            cursor: pointer;
+            color: #306108;
+            font-family: Arial;
+            font-size: 13px;
+            font-weight: bold;
+            padding: 6px 24px;
+            text-decoration: none;
+            text-shadow: 0 1px 0 #aade7c;
         }
 
-            .buttons button:hover {
-                background: linear-gradient(to bottom, #a5cc52 5%, #b8e356 100%);
-                background-color: #a5cc52;
-            }
-            .buttons button:active {
-                position: relative;
-                top: 1px;
-            }
+        .buttons button:hover {
+            background: linear-gradient(to bottom, #a5cc52 5%, #b8e356 100%);
+            background-color: #a5cc52;
+        }
+
+        .moreBtn:hover {
+            background: linear-gradient(to bottom, #a5cc52 5%, #b8e356 100%);
+            background-color: #a5cc52;
+        }
+        .buttons button:active {
+            position: relative;
+            top: 1px;
+        }
 
         /* 리플 */
 
@@ -194,11 +213,40 @@
         #ratingc {
             display: none;
         }
+
+        .moreCnt {
+            bottom: 1em;
+            right: 40em;
+            position: fixed;
+        }
+
+        fieldset{
+            background-color: black;
+        }
+
+        legend{
+            background-color: yellow;
+        }
+
+        @media (max-width: 47.94em) {
+            .moreCnt {
+                bottom: 1em;
+                right: 1em;
+            }
+
+            .buttons {
+                width: 80%;
+            }
+
+            .moreBtn {
+                font-size: 10px;
+            }
+        }
     </style>
     <body>
         <class="grid-container">
             <!-- 로고, 인포, 회원가입, 로그인/로그아웃 -->
-            <div class="grid-item">
+            <div class="grid-item fixed">
                 <div class="header">
                     <div class="logo">
                         <img src="images/frog.png">
@@ -297,6 +345,9 @@
                     <div class="comment">
                         ⭐⭐⭐ 😀 나그네 하하하 재밌군요.
                     </div>
+                    <div class="moreCnt">
+                        <button type="button" class="moreBtn">더보기</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -355,5 +406,7 @@
                 .display = "none";
 
         }
+
+        $(window).on
     </script>
 </html>
